@@ -1,0 +1,7 @@
+POST http://localhost:8080/web
+Content-Type: application/json
+
+{
+    "url": "https://mars.nasa.gov/news/9060/roving-with-perseverance-nasa-mars-rover-and-helicopter-models-on-tour/",
+    "site": "NASA"
+}
