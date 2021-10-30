@@ -33,16 +33,16 @@ const SideBar = (props) => {
   return (
       <div
         style={{ height: `calc(100vh - 3rem)` }}
-        className={`w-2/3 h-screen absolute ${props.style} bg-white 2xl:relative 2xl:-left-0 2xl:w-1/5 2xl:float-left px-4`}
+        className={`w-2/3 h-screen absolute ${props.style} bg-white md:w-1/2 xl:w-1/3 2xl:relative 2xl:-left-0 2xl:w-1/5 2xl:float-left px-4`}
       >
-        <div className="my-5 font-semibold">Filter</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Filter</div>
         <TextInput
           name="titleFilter"
           placeholder="search..."
           getValue={getFilterValue}
         />
         <hr />
-        <div className="my-5 font-semibold">Sort</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Sort</div>
         <Input
           type="radio"
           name="sort"
@@ -58,7 +58,7 @@ const SideBar = (props) => {
           getValue={getSortValue}
         />
         <hr />
-        <div className="my-5 font-semibold">Options</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Options</div>
         <Input
           type="checkbox"
           name="showFavourites"
