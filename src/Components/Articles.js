@@ -2,20 +2,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Article from "./Article";
 import Loading from "./Loading";
+import { connect } from "react-redux";
 
-const Articles = () => {
+const Articles = (props) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://api.spaceflightnewsapi.net/v3/articles?_limit=24")
+      .get(`https://api.spaceflightnewsapi.net/v3/articles?_limit=24&_sort=${props.sort}&title_contains=${props.filter.titleFilter}`)
       .then((result) => {
         setArticles(result.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [props.sort, props.filter]);
 
   if(articles.length !== 0) {
     return (
@@ -37,4 +38,11 @@ const Articles = () => {
   }
 };
 
-export default Articles;
+const mapStateToProps = (state) => {
+  return {
+    filter: state.filter,
+    sort: state.sort
+  }
+}
+
+export default connect(mapStateToProps)(Articles);
