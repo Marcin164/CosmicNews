@@ -23,26 +23,24 @@ const SideBar = (props) => {
     props.setSort(e.currentTarget.value);
   };
 
-  const getOptionValue = (e) => {
+  const showFavourites = (e) => {
     e.preventDefault();
-    //let newData = {...data, [e.currentTarget.name]: e.currentTarget.checked}
-    //setData(newData)
-    //props.setOption(newData)
-  };
+    props.showFavs(e.currentTarget.checked)
+  }
 
   return (
       <div
         style={{ height: `calc(100vh - 3rem)` }}
-        className={`w-2/3 h-screen absolute ${props.style} bg-white md:w-1/2 xl:w-1/3 2xl:relative 2xl:-left-0 2xl:w-1/5 2xl:float-left px-4`}
+        className={`w-2/3 z-20 h-screen absolute ${props.style} bg-white md:w-1/2 xl:w-1/3 2xl:relative 2xl:-left-0 2xl:w-1/5 2xl:float-left px-4`}
       >
-        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Filter</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-2xl 2xl:text-xl">Filter</div>
         <TextInput
           name="titleFilter"
           placeholder="search..."
           getValue={getFilterValue}
         />
         <hr />
-        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Sort</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-2xl">Sort</div>
         <Input
           type="radio"
           name="sort"
@@ -58,18 +56,12 @@ const SideBar = (props) => {
           getValue={getSortValue}
         />
         <hr />
-        <div className="my-5 font-semibold md:text-3xl xl:text-3xl">Options</div>
+        <div className="my-5 font-semibold md:text-3xl xl:text-2xl">Options</div>
         <Input
           type="checkbox"
           name="showFavourites"
           text="Show favourites"
-          getValue={getOptionValue}
-        />
-        <Input
-          type="checkbox"
-          name="changeTheme"
-          text="Change theme"
-          getValue={getOptionValue}
+          getValue={showFavourites}
         />
       </div>
   );
@@ -79,6 +71,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setFilter: (data) => dispatch({ type: "SET_FILTER", payload: { data } }),
     setSort: (data) => dispatch({ type: "SET_SORT", payload: { data } }),
+    showFavs: (data) => dispatch({ type: "SHOW_FAVS", payload: { data } })
   };
 };
 

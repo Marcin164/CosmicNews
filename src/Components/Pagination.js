@@ -34,28 +34,34 @@ const Pagination = (props) => {
   };
 
   return (
-    <div className="w-full">
-      <button
-        onClick={goToPreviousPage}
-        className={`p-3 ${currentPage === 1 ? "disabled" : ""}`}
-      >
-        prev
-      </button>
-      {getPaginationGroup().map((item, index) => (
+    <div className="sticky top-0 bg-white w-full py-4 flex">
+      <div className="w-2/5 mr-2 flex flex-row justify-end content-center">
         <button
-          key={index}
-          onClick={changePage}
-          className={`p-3 ${currentPage === item ? "active" : null}`}
+          onClick={goToPreviousPage}
+          className={`p-3 rounded bg-gray-100 ${currentPage === 1 ? "invisible" : ""}`}
         >
-          {item}
+          prev
         </button>
-      ))}
-      <button
-        onClick={goToNextPage}
-        className={`p-3 ${currentPage === pages ? "disabled" : ""}`}
-      >
-        next
-      </button>
+      </div>
+      <div className="w-auto flex flex-row justify-center content-center">
+        {getPaginationGroup().map((item, index) => (
+          <button
+            key={index}
+            onClick={changePage}
+            className={`px-5 rounded bg-gray-100 mx-1 ${currentPage === item ? "bg-blue-100" : null}`}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      <div className="w-2/5 ml-2 flex flex-row justify-start content-center">
+        <button
+          onClick={goToNextPage}
+          className={`p-3 rounded bg-gray-100  ${currentPage === pages ? "invisible" : ""}`}
+        >
+          next
+        </button>
+      </div>
     </div>
   );
 };

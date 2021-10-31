@@ -23,8 +23,8 @@ const Dashboard = (props) => {
   return (
     <>
       <Topbar toggleSidebar={toggleSidebar} />
-      <Pagination count={count} limit={24} pageLimit={5}/>
       <Sidebar style={style} />
+      <Pagination count={count} limit={24} pageLimit={10}/>
       <Articles/>
     </>
   );
