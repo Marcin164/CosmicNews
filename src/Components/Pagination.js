@@ -5,9 +5,15 @@ const Pagination = (props) => {
   const [pages] = useState(Math.round(props.count / props.limit));
   const [currentPage, setCurrentPage] = useState(1);
 
+  const getPaginationGroup = () => {
+    let start =
+      Math.floor((currentPage - 1) / props.pageLimit) * props.pageLimit;
+    return new Array(props.pageLimit).fill().map((_, idx) => start + idx + 1);
+  };
+
   function goToNextPage() {
     if (currentPage !== pages) {
-      let newPage = currentPage + 1;
+      const newPage = currentPage + 1;
       setCurrentPage(newPage);
       props.setPage(newPage);
     }
@@ -15,7 +21,7 @@ const Pagination = (props) => {
 
   function goToPreviousPage() {
     if (currentPage !== 1) {
-      let newPage = currentPage - 1;
+      const newPage = currentPage - 1;
       setCurrentPage(newPage);
       props.setPage(newPage);
     }
@@ -27,14 +33,8 @@ const Pagination = (props) => {
     props.setPage(pageNumber);
   }
 
-  const getPaginationGroup = () => {
-    let start =
-      Math.floor((currentPage - 1) / props.pageLimit) * props.pageLimit;
-    return new Array(props.pageLimit).fill().map((_, idx) => start + idx + 1);
-  };
-
   return (
-    <div className="sticky top-0 bg-white w-full py-4 flex">
+    <div className="sticky top-0 bg-white w-full py-4 flex 2xl:w-2/3">
       <div className="w-2/5 mr-2 flex flex-row justify-end content-center">
         <button
           onClick={goToPreviousPage}
